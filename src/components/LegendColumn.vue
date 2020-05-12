@@ -1,48 +1,36 @@
 <template>
   <div class="column">
     <div class="column__day">
-      <p>{{ day }}</p>
+      <p>Dzień</p>
     </div>
     <div class="column__hour">
-      <p>{{ hour }}</p>
+      <p>Godzina</p>
     </div>
     <div class="column__forecast">
-      <span>{{ forecast }}</span>
+      <p>Prognoza</p>
     </div>
     <div class="column__temperature">
-      <p>{{ temperature }}&#176;</p>
+      <p>Temperatura</p>
     </div>
     <div class="column__rain">
-      <p class="column__rain--description">{{ rain }} mm</p>
-      <div class="column__rain--fill" :style="{ height: height + 'px' }"></div>
+      <p></p>
+      Opady
     </div>
     <div class="column__wind-direction">
-      <!-- <span>{{ wind_icon }}</span> -->
-      <p>{{ wind_direction }}</p>
+      <p>Kierunek wiatru</p>
     </div>
     <div class="column__wind-speed">
-      <p>{{ wind_speed.description }}<br />{{ wind_speed.number }} km/h</p>
+      <p>Prędkość wiatru</p>
     </div>
     <div class="column__preasure">
-      <p>{{ preasure }} hPa</p>
+      <p>Ciśnienie</p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Column",
-  props: {
-    day: String,
-    hour: String,
-    forecast: String,
-    temperature: String,
-    rain: String,
-    height: Number,
-    wind_direction: String,
-    wind_speed: Object,
-    preasure: String
-  }
+  name: "Legend_Column"
 };
 </script>
 
@@ -51,10 +39,11 @@ export default {
 .column {
   height: 920px;
   width: 120px;
-  color: #000000;
+  color: #b3b3b3;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   background-color: #ffffff;
+  //border-bottom: 1px solid #f4f4f4;
   border-right: 1px solid #e5e5e5;
   display: flex;
   flex-direction: column;
@@ -71,9 +60,9 @@ export default {
   &__wind-direction,
   &__wind-speed,
   &__preasure {
+    border-bottom: 1px solid #f4f4f4;
     width: 100%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
@@ -84,40 +73,27 @@ export default {
   }
   &__hour {
     height: 60px;
-    font-size: 18px;
   }
   &__forecast {
     height: 70px;
   }
   &__temperature {
     height: 220px;
-    font-size: 24px;
   }
   &__rain {
-    justify-content: flex-end;
     height: 120px;
-    font-size: 16px;
-    &--description {
-      margin-bottom: 2px;
-    }
-    &--fill {
-      width: 100%;
-      background-color: #34ccff;
-    }
   }
   &__wind-direction {
     height: 120px;
-    border-right: 1px solid #ffffff;
-    background-color: #f0f0f0;
+    // border-right: 1px solid #ffffff;
   }
   &__wind-speed {
     height: 100px;
-    border-right: 1px solid #ffffff;
-    background-color: #f0f0f0;
+    // border-right: 1px solid #ffffff;
   }
   &__preasure {
     height: 200px;
-    border-bottom: 1px solid #f4f4f4;
+    border-bottom: none;
   }
 }
 </style>
