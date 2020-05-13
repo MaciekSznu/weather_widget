@@ -4,6 +4,7 @@
     <div class="columnsWrapper">
       <Column
         :day="day"
+        :showDayName="showDayName"
         :hour="hour"
         :forecast="forecast"
         :temperature="temperature"
@@ -31,7 +32,7 @@ export default {
   data() {
     return {
       day: "Dzisiaj",
-      hour: "01:00",
+      hour: "00:00",
       forecast: "Prognoza",
       temperature: "7",
       rain: "0,2",
@@ -40,10 +41,14 @@ export default {
         description: "Słaby",
         number: "4"
       },
-      preasure: "1014"
+      preasure: "1014",
+      showDay: false
     };
   },
   computed: {
+    showDayName() {
+      return this.hour === "00:00" ? true : false;
+    },
     fillHeight() {
       let fillHeight =
         parseFloat(this.rain.replace(",", ".").replace(" ", "")) * 20;

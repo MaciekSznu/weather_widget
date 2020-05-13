@@ -1,7 +1,7 @@
 <template>
   <div class="column">
     <div class="column__day">
-      <p>{{ day }}</p>
+      <p v-if="showDayName">{{ day }}</p>
     </div>
     <div class="column__hour">
       <p>{{ hour }}</p>
@@ -38,6 +38,7 @@ export default {
   name: "Column",
   props: {
     day: String,
+    showDayName: Boolean,
     hour: String,
     forecast: String,
     temperature: String,
