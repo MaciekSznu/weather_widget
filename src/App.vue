@@ -20,6 +20,8 @@
         :preasureDescriptionBottom="preasureDescriptionBottom"
         :preasureLineRotate="preasureLineRotate"
         :preasureLineLength="preasureLineLength"
+        :tempLineRotate="tempLineRotate"
+        :tempLineLength="tempLineLength"
       />
     </div>
   </div>
@@ -69,6 +71,23 @@ export default {
       let tempDescriptionBottom = this.tempCircleBottom + 18;
       return tempDescriptionBottom;
     },
+    tempLineRotate() {
+      let horizontal = 120;
+      let vertical = 20;
+      let tangOfAngle = vertical / horizontal;
+      const tempLineRotate = (-Math.atan(tangOfAngle) * 180) / Math.PI;
+
+      return tempLineRotate;
+    },
+    tempLineLength() {
+      let horizontal = 120;
+      let vertical = 20;
+      const tempLineLength = Math.ceil(
+        Math.sqrt(Math.pow(horizontal, 2) + Math.pow(vertical, 2))
+      );
+
+      return tempLineLength;
+    },
     preasureCircleBottom() {
       // dodać warunek tak aby nie wychodziło poza kontener
       let tempCircleBottom = (parseFloat(this.preasure) - 1000) * 10 - 80;
@@ -81,9 +100,7 @@ export default {
     preasureLineRotate() {
       let horizontal = 120;
       let vertical = 20;
-
       let tangOfAngle = vertical / horizontal;
-
       const preasureLineRotate = (-Math.atan(tangOfAngle) * 180) / Math.PI;
 
       return preasureLineRotate;
@@ -91,7 +108,6 @@ export default {
     preasureLineLength() {
       let horizontal = 120;
       let vertical = 20;
-
       const preasureLineLength = Math.ceil(
         Math.sqrt(Math.pow(horizontal, 2) + Math.pow(vertical, 2))
       );

@@ -20,6 +20,14 @@
         class="column__temperature--circle"
         :style="{ bottom: tempCircleBottom + 'px' }"
       ></div>
+      <div
+        class="column__temperature--line"
+        :style="{
+          bottom: tempCircleBottom + 'px',
+          transform: 'rotate(' + tempLineRotate + 'deg)',
+          width: tempLineLength + 'px'
+        }"
+      ></div>
     </div>
     <div class="column__rain">
       <p class="column__rain--description">{{ rain }} mm</p>
@@ -70,6 +78,8 @@ export default {
     temperature: String,
     tempDescriptionBottom: Number,
     tempCircleBottom: Number,
+    tempLineRotate: Number,
+    tempLineLength: Number,
     rain: String,
     height: Number,
     wind_direction: String,
@@ -141,10 +151,19 @@ export default {
     &--circle {
       width: 16px;
       height: 16px;
-      background-color: transparent;
+      background-color: #ffffff;
       border: 2px solid #000000;
       border-radius: 50%;
       position: absolute;
+      z-index: 1;
+    }
+    &--line {
+      position: absolute;
+      height: 2px;
+      left: 50%;
+      background-color: #ffd520;
+      margin-bottom: 7px;
+      transform-origin: center left;
     }
   }
   &__rain {
@@ -192,7 +211,6 @@ export default {
     &--line {
       position: absolute;
       height: 2px;
-      //width: 100%;
       left: 50%;
       background-color: #000000;
       margin-bottom: 7px;
