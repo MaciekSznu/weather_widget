@@ -18,6 +18,8 @@
         :tempDescriptionBottom="tempDescriptionBottom"
         :preasureCircleBottom="preasureCircleBottom"
         :preasureDescriptionBottom="preasureDescriptionBottom"
+        :preasureLineRotate="preasureLineRotate"
+        :preasureLineLength="preasureLineLength"
       />
     </div>
   </div>
@@ -75,6 +77,26 @@ export default {
     preasureDescriptionBottom() {
       let preasureDescriptionBottom = this.preasureCircleBottom + 18;
       return preasureDescriptionBottom;
+    },
+    preasureLineRotate() {
+      let horizontal = 120;
+      let vertical = 20;
+
+      let tangOfAngle = vertical / horizontal;
+
+      const preasureLineRotate = (-Math.atan(tangOfAngle) * 180) / Math.PI;
+
+      return preasureLineRotate;
+    },
+    preasureLineLength() {
+      let horizontal = 120;
+      let vertical = 20;
+
+      const preasureLineLength = Math.ceil(
+        Math.sqrt(Math.pow(horizontal, 2) + Math.pow(vertical, 2))
+      );
+
+      return preasureLineLength;
     },
     windDirectionRotate() {
       let direction = this.wind_direction;

@@ -47,6 +47,14 @@
         class="column__preasure--circle"
         :style="{ bottom: preasureCircleBottom + 'px' }"
       ></div>
+      <div
+        class="column__preasure--line"
+        :style="{
+          bottom: preasureCircleBottom + 'px',
+          transform: 'rotate(' + preasureLineRotate + 'deg)',
+          width: preasureLineLength + 'px'
+        }"
+      ></div>
     </div>
   </div>
 </template>
@@ -69,7 +77,9 @@ export default {
     wind_speed: Object,
     preasure: String,
     preasureDescriptionBottom: Number,
-    preasureCircleBottom: Number
+    preasureCircleBottom: Number,
+    preasureLineRotate: Number,
+    preasureLineLength: Number
   }
 };
 </script>
@@ -173,10 +183,20 @@ export default {
     &--circle {
       width: 16px;
       height: 16px;
-      background-color: transparent;
+      background-color: #ffffff;
       border: 2px solid #000000;
       border-radius: 50%;
       position: absolute;
+      z-index: 1;
+    }
+    &--line {
+      position: absolute;
+      height: 2px;
+      //width: 100%;
+      left: 50%;
+      background-color: #000000;
+      margin-bottom: 7px;
+      transform-origin: center left;
     }
   }
 }
