@@ -14,6 +14,10 @@
         :preasure="preasure"
         :height="fillHeight"
         :rotate="windDirectionRotate"
+        :tempCircleBottom="tempCircleBottom"
+        :tempDescriptionBottom="tempDescriptionBottom"
+        :preasureCircleBottom="preasureCircleBottom"
+        :preasureDescriptionBottom="preasureDescriptionBottom"
       />
     </div>
   </div>
@@ -53,6 +57,24 @@ export default {
       let fillHeight =
         parseFloat(this.rain.replace(",", ".").replace(" ", "")) * 20;
       return fillHeight;
+    },
+    tempCircleBottom() {
+      // dodać warunek tak aby nie wychodziło poza kontener
+      let tempCircleBottom = parseFloat(this.temperature) * 10 - 24;
+      return tempCircleBottom;
+    },
+    tempDescriptionBottom() {
+      let tempDescriptionBottom = this.tempCircleBottom + 18;
+      return tempDescriptionBottom;
+    },
+    preasureCircleBottom() {
+      // dodać warunek tak aby nie wychodziło poza kontener
+      let tempCircleBottom = (parseFloat(this.preasure) - 1000) * 10 - 80;
+      return tempCircleBottom;
+    },
+    preasureDescriptionBottom() {
+      let preasureDescriptionBottom = this.preasureCircleBottom + 18;
+      return preasureDescriptionBottom;
     },
     windDirectionRotate() {
       let direction = this.wind_direction;

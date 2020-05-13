@@ -10,7 +10,16 @@
       <img class="column__forecast--icon" :src="forecast_icon" />
     </div>
     <div class="column__temperature">
-      <p>{{ temperature }}&#176;</p>
+      <p
+        class="column__temperature--description"
+        :style="{ bottom: tempDescriptionBottom + 'px' }"
+      >
+        {{ temperature }}&#176;
+      </p>
+      <div
+        class="column__temperature--circle"
+        :style="{ bottom: tempCircleBottom + 'px' }"
+      ></div>
     </div>
     <div class="column__rain">
       <p class="column__rain--description">{{ rain }} mm</p>
@@ -28,7 +37,16 @@
       <p>{{ wind_speed.description }}<br />{{ wind_speed.number }} km/h</p>
     </div>
     <div class="column__preasure">
-      <p>{{ preasure }} hPa</p>
+      <p
+        class="column__preasure--description"
+        :style="{ bottom: preasureDescriptionBottom + 'px' }"
+      >
+        {{ preasure }} hPa
+      </p>
+      <div
+        class="column__preasure--circle"
+        :style="{ bottom: preasureCircleBottom + 'px' }"
+      ></div>
     </div>
   </div>
 </template>
@@ -42,12 +60,16 @@ export default {
     hour: String,
     forecast_icon: String,
     temperature: String,
+    tempDescriptionBottom: Number,
+    tempCircleBottom: Number,
     rain: String,
     height: Number,
     wind_direction: String,
     rotate: Number,
     wind_speed: Object,
-    preasure: String
+    preasure: String,
+    preasureDescriptionBottom: Number,
+    preasureCircleBottom: Number
   }
 };
 </script>
@@ -99,8 +121,21 @@ export default {
     }
   }
   &__temperature {
+    position: relative;
     height: 220px;
     font-size: 24px;
+    &--description {
+      margin: 0;
+      position: absolute;
+    }
+    &--circle {
+      width: 16px;
+      height: 16px;
+      background-color: transparent;
+      border: 2px solid #000000;
+      border-radius: 50%;
+      position: absolute;
+    }
   }
   &__rain {
     justify-content: flex-end;
@@ -128,8 +163,21 @@ export default {
     background-color: #f0f0f0;
   }
   &__preasure {
+    position: relative;
     height: 200px;
     border-bottom: 1px solid #f4f4f4;
+    &--description {
+      margin: 0;
+      position: absolute;
+    }
+    &--circle {
+      width: 16px;
+      height: 16px;
+      background-color: transparent;
+      border: 2px solid #000000;
+      border-radius: 50%;
+      position: absolute;
+    }
   }
 }
 </style>
