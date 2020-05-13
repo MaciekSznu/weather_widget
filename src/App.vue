@@ -6,7 +6,7 @@
         :day="day"
         :showDayName="showDayName"
         :hour="hour"
-        :forecast="forecast"
+        :forecast_icon="forecast_icon"
         :temperature="temperature"
         :rain="rain"
         :wind_direction="wind_direction"
@@ -33,7 +33,7 @@ export default {
     return {
       day: "Dzisiaj",
       hour: "00:00",
-      forecast: "Prognoza",
+      forecast_icon: require("../src/assets/cloud.png"),
       temperature: "7",
       rain: "0,2",
       wind_direction: "Południowy",

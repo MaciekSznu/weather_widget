@@ -7,7 +7,7 @@
       <p>{{ hour }}</p>
     </div>
     <div class="column__forecast">
-      <span>{{ forecast }}</span>
+      <img class="column__forecast--icon" :src="forecast_icon" />
     </div>
     <div class="column__temperature">
       <p>{{ temperature }}&#176;</p>
@@ -40,7 +40,7 @@ export default {
     day: String,
     showDayName: Boolean,
     hour: String,
-    forecast: String,
+    forecast_icon: String,
     temperature: String,
     rain: String,
     height: Number,
@@ -52,7 +52,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .column {
   height: 920px;
@@ -94,6 +93,10 @@ export default {
   }
   &__forecast {
     height: 70px;
+    &--icon {
+      width: 62px;
+      height: 62px;
+    }
   }
   &__temperature {
     height: 220px;
