@@ -17,8 +17,12 @@
       <div class="column__rain--fill" :style="{ height: height + 'px' }"></div>
     </div>
     <div class="column__wind-direction">
-      <!-- <span>{{ wind_icon }}</span> -->
-      <p>{{ wind_direction }}</p>
+      <img
+        class="column__wind-direction--icon"
+        src="../assets/wind_ico.png"
+        :style="{ transform: 'rotate(' + rotate + 'deg)' }"
+      />
+      <p class="column__wind-direction--description">{{ wind_direction }}</p>
     </div>
     <div class="column__wind-speed">
       <p>{{ wind_speed.description }}<br />{{ wind_speed.number }} km/h</p>
@@ -40,6 +44,7 @@ export default {
     rain: String,
     height: Number,
     wind_direction: String,
+    rotate: Number,
     wind_speed: Object,
     preasure: String
   }
@@ -109,6 +114,9 @@ export default {
     height: 120px;
     border-right: 1px solid #ffffff;
     background-color: #f0f0f0;
+    &--description {
+      margin-bottom: 2px;
+    }
   }
   &__wind-speed {
     height: 100px;
