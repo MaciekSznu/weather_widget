@@ -44,8 +44,9 @@ export default {
   },
   computed: {
     fillHeight() {
-      let height = parseFloat(this.rain.replace(",", ".").replace(" ", "")) * 20;
-      return height;
+      let fillHeight =
+        parseFloat(this.rain.replace(",", ".").replace(" ", "")) * 20;
+      return fillHeight;
     }
   }
 };
