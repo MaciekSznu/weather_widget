@@ -1,13 +1,13 @@
 <template>
   <div class="column">
     <div class="column__day">
-      <p>{{ day }}</p>
+      <p v-if="showDayName">{{ day }}</p>
     </div>
     <div class="column__hour">
       <p>{{ hour }}</p>
     </div>
     <div class="column__forecast">
-      <span>{{ forecast }}</span>
+      <img class="column__forecast--icon" :src="forecast_icon" />
     </div>
     <div class="column__temperature">
       <p>{{ temperature }}&#176;</p>
@@ -17,8 +17,12 @@
       <div class="column__rain--fill" :style="{ height: height + 'px' }"></div>
     </div>
     <div class="column__wind-direction">
-      <!-- <span>{{ wind_icon }}</span> -->
-      <p>{{ wind_direction }}</p>
+      <img
+        class="column__wind-direction--icon"
+        src="../assets/wind_ico.png"
+        :style="{ transform: 'rotate(' + rotate + 'deg)' }"
+      />
+      <p class="column__wind-direction--description">{{ wind_direction }}</p>
     </div>
     <div class="column__wind-speed">
       <p>{{ wind_speed.description }}<br />{{ wind_speed.number }} km/h</p>
@@ -34,19 +38,20 @@ export default {
   name: "Column",
   props: {
     day: String,
+    showDayName: Boolean,
     hour: String,
-    forecast: String,
+    forecast_icon: String,
     temperature: String,
     rain: String,
     height: Number,
     wind_direction: String,
+    rotate: Number,
     wind_speed: Object,
     preasure: String
   }
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .column {
   height: 920px;
@@ -88,6 +93,10 @@ export default {
   }
   &__forecast {
     height: 70px;
+    &--icon {
+      width: 62px;
+      height: 62px;
+    }
   }
   &__temperature {
     height: 220px;
@@ -109,6 +118,9 @@ export default {
     height: 120px;
     border-right: 1px solid #ffffff;
     background-color: #f0f0f0;
+    &--description {
+      margin-bottom: 2px;
+    }
   }
   &__wind-speed {
     height: 100px;
