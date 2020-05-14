@@ -10,10 +10,36 @@
       <img class="column__forecast--icon" :src="forecast_icon" />
     </div>
     <div class="column__temperature">
-      <p>{{ temperature }}&#176;</p>
+      <p
+        class="column__temperature--description"
+        :style="{ bottom: tempDescriptionBottom + 'px' }"
+      >
+        {{ temperature }}&#176;
+      </p>
+      <div
+        class="column__temperature--circle"
+        :style="{ bottom: tempCircleBottom + 'px' }"
+      ></div>
+      <div
+        class="column__temperature--line"
+        :style="{
+          bottom: tempCircleBottom + 'px',
+          transform: 'rotate(' + tempLineRotate + 'deg)',
+          width: tempLineLength + 'px'
+        }"
+      ></div>
+      <div
+        class="column__temperature--first-line"
+        :style="{
+          bottom: tempCircleBottom + 'px',
+          display: isFirst
+        }"
+      ></div>
     </div>
     <div class="column__rain">
-      <p class="column__rain--description">{{ rain }} mm</p>
+      <p class="column__rain--description" v-if="rain !== '' && rain !== '0'">
+        {{ rain }} mm
+      </p>
       <div class="column__rain--fill" :style="{ height: height + 'px' }"></div>
     </div>
     <div class="column__wind-direction">
@@ -28,7 +54,31 @@
       <p>{{ wind_speed.description }}<br />{{ wind_speed.number }} km/h</p>
     </div>
     <div class="column__preasure">
-      <p>{{ preasure }} hPa</p>
+      <p
+        class="column__preasure--description"
+        :style="{ bottom: preasureDescriptionBottom + 'px' }"
+      >
+        {{ preasure }} hPa
+      </p>
+      <div
+        class="column__preasure--circle"
+        :style="{ bottom: preasureCircleBottom + 'px' }"
+      ></div>
+      <div
+        class="column__preasure--line"
+        :style="{
+          bottom: preasureCircleBottom + 'px',
+          transform: 'rotate(' + preasureLineRotate + 'deg)',
+          width: preasureLineLength + 'px'
+        }"
+      ></div>
+      <div
+        class="column__preasure--first-line"
+        :style="{
+          bottom: preasureCircleBottom + 'px',
+          display: isFirst
+        }"
+      ></div>
     </div>
   </div>
 </template>
@@ -42,12 +92,21 @@ export default {
     hour: String,
     forecast_icon: String,
     temperature: String,
+    tempDescriptionBottom: Number,
+    tempCircleBottom: Number,
+    tempLineRotate: Number,
+    tempLineLength: Number,
     rain: String,
     height: Number,
     wind_direction: String,
     rotate: Number,
     wind_speed: Object,
-    preasure: String
+    preasure: String,
+    preasureDescriptionBottom: Number,
+    preasureCircleBottom: Number,
+    preasureLineRotate: Number,
+    preasureLineLength: Number,
+    isFirst: String
   }
 };
 </script>
@@ -56,6 +115,7 @@ export default {
 .column {
   height: 920px;
   width: 120px;
+  min-width: 120px;
   color: #000000;
   font-size: 14px;
   font-weight: 500;
@@ -67,6 +127,7 @@ export default {
   align-items: center;
   margin: 0;
   padding: 0;
+  cursor: pointer;
 
   &__day,
   &__hour,
@@ -99,8 +160,39 @@ export default {
     }
   }
   &__temperature {
+    position: relative;
     height: 220px;
     font-size: 24px;
+    &--description {
+      margin: 0;
+      position: absolute;
+    }
+    &--circle {
+      width: 16px;
+      height: 16px;
+      background-color: #ffffff;
+      border: 2px solid #000000;
+      border-radius: 50%;
+      position: absolute;
+      z-index: 1;
+    }
+    &--line {
+      position: absolute;
+      height: 2px;
+      left: 50%;
+      background-color: #ffd520;
+      margin-bottom: 7px;
+      transform-origin: center left;
+    }
+    &--first-line {
+      position: absolute;
+      height: 2px;
+      left: 0px;
+      width: 60px;
+      background-color: #ffd520;
+      margin-bottom: 7px;
+      display: none;
+    }
   }
   &__rain {
     justify-content: flex-end;
@@ -128,8 +220,39 @@ export default {
     background-color: #f0f0f0;
   }
   &__preasure {
+    position: relative;
     height: 200px;
     border-bottom: 1px solid #f4f4f4;
+    &--description {
+      margin: 0;
+      position: absolute;
+    }
+    &--circle {
+      width: 16px;
+      height: 16px;
+      background-color: #ffffff;
+      border: 2px solid #000000;
+      border-radius: 50%;
+      position: absolute;
+      z-index: 1;
+    }
+    &--line {
+      position: absolute;
+      height: 2px;
+      left: 50%;
+      background-color: #000000;
+      margin-bottom: 7px;
+      transform-origin: center left;
+    }
+    &--first-line {
+      position: absolute;
+      height: 2px;
+      left: 0px;
+      width: 60px;
+      background-color: #000000;
+      margin-bottom: 7px;
+      display: none;
+    }
   }
 }
 </style>
