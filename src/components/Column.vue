@@ -98,6 +98,7 @@ export default {
 .column {
   height: 920px;
   width: 120px;
+  min-width: 120px;
   color: #000000;
   font-size: 14px;
   font-weight: 500;
@@ -109,6 +110,7 @@ export default {
   align-items: center;
   margin: 0;
   padding: 0;
+  cursor: pointer;
 
   &__day,
   &__hour,

@@ -3,10 +3,10 @@
     <LegendColumn />
     <div class="columnsWrapper">
       <Column
-        v-for="weather in weatherData"
-        :key="weather.index"
+        v-for="(weather, index) in weatherData"
+        :key="index"
         :day="weather.day"
-        :showDayName="showDayName"
+        :showDayName="showDayName(index)"
         :hour="weather.hour"
         :forecast_icon="weather.forecast_icon"
         :temperature="weather.temperature"
@@ -14,16 +14,16 @@
         :wind_direction="weather.wind_direction"
         :wind_speed="weather.wind_speed"
         :preasure="weather.preasure"
-        :height="fillHeight"
-        :rotate="windDirectionRotate"
-        :tempCircleBottom="tempCircleBottom"
-        :tempDescriptionBottom="tempDescriptionBottom"
-        :preasureCircleBottom="preasureCircleBottom"
-        :preasureDescriptionBottom="preasureDescriptionBottom"
+        :height="fillHeight(index)"
+        :rotate="windDirectionRotate(index)"
+        :tempCircleBottom="tempCircleBottom(index)"
+        :tempDescriptionBottom="tempDescriptionBottom(index)"
+        :preasureCircleBottom="preasureCircleBottom(index)"
+        :preasureDescriptionBottom="preasureDescriptionBottom(index)"
         :preasureLineRotate="preasureLineRotate"
         :preasureLineLength="preasureLineLength"
-        :tempLineRotate="tempLineRotate"
-        :tempLineLength="tempLineLength"
+        :tempLineRotate="tempLineRotate(index)"
+        :tempLineLength="tempLineLength(index)"
       />
     </div>
   </div>
@@ -57,70 +57,45 @@ export default {
       showDay: false
     };
   },
-  computed: {
-    showDayName() {
-      return this.hour === "00:00" ? true : false;
+  methods: {
+    showDayName(index) {
+      const datas = this.$data.weatherData;
+
+      return datas[index].hour === "00:00" ? true : false;
     },
-    fillHeight() {
-      console.log(this);
+    fillHeight(index) {
+      const datas = this.$data.weatherData;
       let fillHeight =
-        parseFloat(this.weatherData[0].rain.replace(",", ".").replace(" ", "")) * 20;
+        parseFloat(datas[index].rain.replace(",", ".").replace(" ", "")) * 20;
       return fillHeight;
     },
-    tempCircleBottom() {
+    tempCircleBottom(index) {
       // dodać warunek tak aby nie wychodziło poza kontener
-      let tempCircleBottom = parseFloat(this.weatherData[0].temperature) * 10 - 24;
+      const datas = this.$data.weatherData;
+      let tempCircleBottom = parseFloat(datas[index].temperature) * 10 - 24;
       return tempCircleBottom;
     },
-    tempDescriptionBottom() {
-      let tempDescriptionBottom = this.tempCircleBottom + 18;
+    tempDescriptionBottom(index) {
+      const datas = this.$data.weatherData;
+      let tempDescriptionBottom = parseFloat(datas[index].temperature) * 10 - 6;
       return tempDescriptionBottom;
     },
-    tempLineRotate() {
-      let horizontal = 120;
-      let vertical = 20;
-      let tangOfAngle = vertical / horizontal;
-      const tempLineRotate = (-Math.atan(tangOfAngle) * 180) / Math.PI;
-
-      return tempLineRotate;
-    },
-    tempLineLength() {
-      let horizontal = 120;
-      let vertical = 20;
-      const tempLineLength = Math.ceil(
-        Math.sqrt(Math.pow(horizontal, 2) + Math.pow(vertical, 2))
-      );
-
-      return tempLineLength;
-    },
-    preasureCircleBottom() {
+    preasureCircleBottom(index) {
       // dodać warunek tak aby nie wychodziło poza kontener
-      let tempCircleBottom = (parseFloat(this.weatherData[0].preasure) - 1000) * 10 - 80;
+      const datas = this.$data.weatherData;
+      let tempCircleBottom =
+        (parseFloat(datas[index].preasure) - 1000) * 10 - 80;
       return tempCircleBottom;
     },
-    preasureDescriptionBottom() {
-      let preasureDescriptionBottom = this.preasureCircleBottom + 18;
+    preasureDescriptionBottom(index) {
+      const datas = this.$data.weatherData;
+      let preasureDescriptionBottom =
+        (parseFloat(datas[index].preasure) - 1000) * 10 - 62;
       return preasureDescriptionBottom;
     },
-    preasureLineRotate() {
-      let horizontal = 120;
-      let vertical = 20;
-      let tangOfAngle = vertical / horizontal;
-      const preasureLineRotate = (-Math.atan(tangOfAngle) * 180) / Math.PI;
-
-      return preasureLineRotate;
-    },
-    preasureLineLength() {
-      let horizontal = 120;
-      let vertical = 20;
-      const preasureLineLength = Math.ceil(
-        Math.sqrt(Math.pow(horizontal, 2) + Math.pow(vertical, 2))
-      );
-
-      return preasureLineLength;
-    },
-    windDirectionRotate() {
-      let direction = this.weatherData[0].wind_direction;
+    windDirectionRotate(index) {
+      const datas = this.$data.weatherData;
+      let direction = datas[index].wind_direction;
       let windDirectionRotate;
       if (direction === "Południowy") {
         windDirectionRotate = 0;
@@ -140,6 +115,64 @@ export default {
         windDirectionRotate = 315;
       }
       return windDirectionRotate;
+    },
+    tempLineRotate(index) {
+      const datas = this.$data.weatherData;
+      let columnWidth = 120;
+      let thisBottom = parseFloat(datas[index].temperature) * 10 - 24;
+      let nextBottom;
+      if (index < datas.length - 1) {
+        nextBottom = parseFloat(datas[index + 1].temperature) * 10 - 24;
+      } else {
+        nextBottom = 0;
+      }
+      let vertical = nextBottom - thisBottom;
+      let tangOfAngle = vertical / columnWidth;
+      const tempLineRotate = (-Math.atan(tangOfAngle) * 180) / Math.PI;
+
+      return tempLineRotate;
+    },
+    tempLineLength(index) {
+      const datas = this.$data.weatherData;
+      let columnWidth = 120;
+      let thisBottom = parseFloat(datas[index].temperature) * 10 - 24;
+      let nextBottom;
+      if (index < datas.length - 1) {
+        nextBottom = parseFloat(datas[index + 1].temperature) * 10 - 24;
+      } else {
+        nextBottom = 0;
+      }
+      let vertical = nextBottom - thisBottom;
+      const tempLineLength = Math.ceil(
+        Math.sqrt(Math.pow(columnWidth, 2) + Math.pow(vertical, 2))
+      );
+
+      return tempLineLength;
+    }
+  },
+  computed: {
+    // tempCircleBottom() {
+    //   // dodać warunek tak aby nie wychodziło poza kontener
+    //   let tempCircleBottom = parseFloat(this.weatherData[0].temperature) * 10 - 24;
+    //   return tempCircleBottom;
+    // },
+
+    preasureLineRotate() {
+      let horizontal = 120;
+      let vertical = 20;
+      let tangOfAngle = vertical / horizontal;
+      const preasureLineRotate = (-Math.atan(tangOfAngle) * 180) / Math.PI;
+
+      return preasureLineRotate;
+    },
+    preasureLineLength() {
+      let horizontal = 120;
+      let vertical = 20;
+      const preasureLineLength = Math.ceil(
+        Math.sqrt(Math.pow(horizontal, 2) + Math.pow(vertical, 2))
+      );
+
+      return preasureLineLength;
     }
   }
 };
@@ -161,6 +194,9 @@ export default {
   .columnsWrapper {
     width: 1440px;
     border: 1px solid grey;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
   }
 }
 </style>
