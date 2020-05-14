@@ -30,7 +30,7 @@ export const weatherData = [
     hour: "02:00",
     forecast_icon: require("./cloud.png"),
     temperature: "7",
-    rain: "0,2",
+    rain: "0",
     wind_direction: "Południowy",
     wind_speed: {
       description: "Słaby",

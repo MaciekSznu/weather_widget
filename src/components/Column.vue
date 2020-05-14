@@ -28,9 +28,18 @@
           width: tempLineLength + 'px'
         }"
       ></div>
+      <div
+        class="column__temperature--first-line"
+        :style="{
+          bottom: tempCircleBottom + 'px',
+          display: isFirst
+        }"
+      ></div>
     </div>
     <div class="column__rain">
-      <p class="column__rain--description">{{ rain }} mm</p>
+      <p class="column__rain--description" v-if="rain !== '' && rain !== '0'">
+        {{ rain }} mm
+      </p>
       <div class="column__rain--fill" :style="{ height: height + 'px' }"></div>
     </div>
     <div class="column__wind-direction">
@@ -63,6 +72,13 @@
           width: preasureLineLength + 'px'
         }"
       ></div>
+      <div
+        class="column__preasure--first-line"
+        :style="{
+          bottom: preasureCircleBottom + 'px',
+          display: isFirst
+        }"
+      ></div>
     </div>
   </div>
 </template>
@@ -89,7 +105,8 @@ export default {
     preasureDescriptionBottom: Number,
     preasureCircleBottom: Number,
     preasureLineRotate: Number,
-    preasureLineLength: Number
+    preasureLineLength: Number,
+    isFirst: String
   }
 };
 </script>
@@ -167,6 +184,15 @@ export default {
       margin-bottom: 7px;
       transform-origin: center left;
     }
+    &--first-line {
+      position: absolute;
+      height: 2px;
+      left: 0px;
+      width: 60px;
+      background-color: #ffd520;
+      margin-bottom: 7px;
+      display: none;
+    }
   }
   &__rain {
     justify-content: flex-end;
@@ -217,6 +243,15 @@ export default {
       background-color: #000000;
       margin-bottom: 7px;
       transform-origin: center left;
+    }
+    &--first-line {
+      position: absolute;
+      height: 2px;
+      left: 0px;
+      width: 60px;
+      background-color: #000000;
+      margin-bottom: 7px;
+      display: none;
     }
   }
 }
