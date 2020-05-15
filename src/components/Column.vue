@@ -113,6 +113,7 @@ export default {
 
 <style scoped lang="scss">
 .column {
+  box-sizing: border-box;
   height: 920px;
   width: 120px;
   min-width: 120px;

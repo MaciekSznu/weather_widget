@@ -39,6 +39,7 @@ export default {
 .column {
   height: 920px;
   width: 120px;
+  min-width: 120px;
   color: #b3b3b3;
   font-size: 14px;
   font-weight: 600;
