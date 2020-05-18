@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <LegendColumn />
+    <LeftPanel class="leftPanel" @click="moveLeft()" />
     <div
       class="columnsWrapper"
       @mousedown="slideMouseDown"
@@ -35,16 +36,15 @@
         :class="{ grabbing: isDown }"
       />
     </div>
-    <ButtonLeft class="buttonLeft" />
-    <ButtonRight class="buttonRight" />
+    <RightPanel class="rightPanel" />
   </div>
 </template>
 
 <script>
 import Column from "./components/Column";
 import LegendColumn from "./components/LegendColumn";
-import ButtonLeft from "./components/ButtonLeft";
-import ButtonRight from "./components/ButtonRight";
+import LeftPanel from "./components/LeftPanel";
+import RightPanel from "./components/RightPanel";
 
 import { weatherData } from "../src/assets/weatherData";
 
@@ -53,8 +53,8 @@ export default {
   components: {
     Column,
     LegendColumn,
-    ButtonLeft,
-    ButtonRight
+    LeftPanel,
+    RightPanel
   },
   data() {
     return {
@@ -238,13 +238,12 @@ export default {
   height: 920px;
   position: relative;
 
-  .buttonLeft {
+  .leftPanel {
     position: absolute;
     left: 140px;
-    pointer-events: none;
   }
 
-  .buttonRight {
+  .rightPanel {
     position: absolute;
     left: 1460px;
   }
