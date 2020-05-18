@@ -7,6 +7,7 @@
       @mouseleave="slideMouseLeave"
       @mouseup="slideMouseUp"
       @mousemove="slideMouseMove"
+      ref="slider"
     >
       <Column
         v-for="(weather, index) in weatherData"
@@ -67,10 +68,9 @@ export default {
   },
   methods: {
     slideMouseDown(e) {
-      const slider = document.querySelector(".columnsWrapper");
       this.isDown = true;
-      this.startX = e.pageX - slider.offsetLeft;
-      this.scrollLeft = slider.scrollLeft;
+      this.startX = e.pageX - this.$refs.slider.offsetLeft;
+      this.scrollLeft = this.$refs.slider.scrollLeft;
     },
     slideMouseLeave() {
       this.isDown = false;
@@ -79,12 +79,11 @@ export default {
       this.isDown = false;
     },
     slideMouseMove(e) {
-      const slider = document.querySelector(".columnsWrapper");
       if (!this.isDown) return;
       e.preventDefault();
-      const x = e.pageX - slider.offsetLeft;
+      const x = e.pageX - this.$refs.slider.offsetLeft;
       const move = (x - this.startX) * 1; //multiply can change swipe speed
-      slider.scrollLeft = this.scrollLeft - move;
+      this.$refs.slider.scrollLeft = this.scrollLeft - move;
     },
     datas() {
       let datas = this.$data.weatherData;
