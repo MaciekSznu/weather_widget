@@ -34,15 +34,14 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .column {
   height: 920px;
-  width: 120px;
-  min-width: 120px;
-  color: #b3b3b3;
-  font-size: 14px;
-  font-weight: 600;
+  width: 140px;
+  min-width: 140px;
+  color: #7e7e7e;
+  font-size: 20px;
+  font-weight: 400;
   background-color: #ffffff;
   //border-bottom: 1px solid #f4f4f4;
   border-right: 1px solid #e5e5e5;
@@ -61,7 +60,7 @@ export default {
   &__wind-direction,
   &__wind-speed,
   &__preasure {
-    border-bottom: 1px solid #f4f4f4;
+    border-bottom: 2px solid #f4f4f4;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -72,26 +71,31 @@ export default {
     height: 30px;
     border-right: none;
   }
+
   &__hour {
     height: 60px;
   }
+
   &__forecast {
     height: 70px;
   }
+
   &__temperature {
     height: 220px;
   }
+
   &__rain {
     height: 120px;
   }
+
   &__wind-direction {
     height: 120px;
-    // border-right: 1px solid #ffffff;
   }
+
   &__wind-speed {
     height: 100px;
-    // border-right: 1px solid #ffffff;
   }
+
   &__preasure {
     height: 200px;
     border-bottom: none;

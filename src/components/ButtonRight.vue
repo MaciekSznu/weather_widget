@@ -9,9 +9,6 @@
 <script>
 export default {
   name: "ButtonRight"
-  // props: {
-  //   day: String,
-  // }
 };
 </script>
 

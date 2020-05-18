@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <LegendColumn />
-    <ButtonLeft class="buttonLeft" />
     <div
       class="columnsWrapper"
       @mousedown="slideMouseDown"
@@ -34,6 +33,7 @@
         :isFirst="isFirst(index)"
       />
     </div>
+    <ButtonLeft class="buttonLeft" />
     <ButtonRight class="buttonRight" />
   </div>
 </template>
@@ -60,8 +60,9 @@ export default {
       showDay: false,
       columnWidth: 120,
       isDown: false,
-      startX: "",
-      scrollLeft: ""
+      startX: null,
+      scrollLeft: null,
+      hover: false
     };
   },
   methods: {
@@ -73,6 +74,7 @@ export default {
     },
     slideMouseLeave() {
       this.isDown = false;
+      this.hover = false;
     },
     slideMouseUp() {
       this.isDown = false;
@@ -218,14 +220,14 @@ export default {
 
       return preasureLineLength;
     }
-  },
-  computed: {}
+  }
 };
 </script>
 
 <style lang="scss">
 #app {
-  font-family: Arial, Helvetica, sans-serif;
+  @import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600&display=swap");
+  font-family: "Fira Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
@@ -239,17 +241,16 @@ export default {
 
   .buttonLeft {
     position: absolute;
-    left: 120px;
+    left: 140px;
   }
 
   .buttonRight {
     position: absolute;
-    left: 1440px;
+    left: 1460px;
   }
 
   .columnsWrapper {
     width: 1440px;
-    //border: 1px solid grey;
     display: flex;
     flex-wrap: nowrap;
     overflow: hidden;
