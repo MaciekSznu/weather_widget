@@ -51,7 +51,10 @@
       <p class="column__wind-direction--description">{{ wind_direction }}</p>
     </div>
     <div class="column__wind-speed">
-      <p>{{ wind_speed.description }}<br />{{ wind_speed.number }} km/h</p>
+      <p class="column__wind-speed--description">
+        {{ wind_speed.description }}
+      </p>
+      <p class="column__wind-speed--value">{{ wind_speed.number }} km/h</p>
     </div>
     <div class="column__preasure">
       <p
@@ -113,14 +116,15 @@ export default {
 
 <style scoped lang="scss">
 .column {
+  box-sizing: border-box;
   height: 920px;
   width: 120px;
   min-width: 120px;
   color: #000000;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 400;
   background-color: #ffffff;
-  border-right: 1px solid #e5e5e5;
+  //border-right: 1px solid #e5e5e5;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -144,13 +148,26 @@ export default {
     align-items: center;
   }
 
+  &__hour,
+  &__forecast,
+  &__temperature,
+  &__rain,
+  &__preasure {
+    border-right: 1px solid #e5e5e5;
+  }
+
   &__day {
     height: 30px;
     border-right: none;
+    font-size: 24px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #7e7e7e;
   }
   &__hour {
     height: 60px;
-    font-size: 18px;
+    font-size: 26px;
+    font-weight: 500;
   }
   &__forecast {
     height: 70px;
@@ -162,14 +179,16 @@ export default {
   &__temperature {
     position: relative;
     height: 220px;
-    font-size: 24px;
+    font-size: 34px;
+    font-weight: 500;
+
     &--description {
       margin: 0;
       position: absolute;
     }
     &--circle {
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
       background-color: #ffffff;
       border: 2px solid #000000;
       border-radius: 50%;
@@ -197,7 +216,8 @@ export default {
   &__rain {
     justify-content: flex-end;
     height: 120px;
-    font-size: 16px;
+    font-size: 22px;
+    font-weight: 500;
     &--description {
       margin-bottom: 2px;
     }
@@ -210,26 +230,44 @@ export default {
     height: 120px;
     border-right: 1px solid #ffffff;
     background-color: #f0f0f0;
+    &--icon {
+      height: 56px;
+      width: 56px;
+    }
     &--description {
-      margin-bottom: 2px;
+      margin-bottom: 0px;
+      font-weight: 500;
     }
   }
   &__wind-speed {
     height: 100px;
     border-right: 1px solid #ffffff;
     background-color: #f0f0f0;
+    &--description {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 500;
+    }
+    &--value {
+      margin: 0;
+      margin-top: 6px;
+      font-size: 23px;
+      font-weight: 500;
+    }
   }
   &__preasure {
     position: relative;
     height: 200px;
     border-bottom: 1px solid #f4f4f4;
     &--description {
+      font-size: 21px;
+      font-weight: 500;
       margin: 0;
       position: absolute;
     }
     &--circle {
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
       background-color: #ffffff;
       border: 2px solid #000000;
       border-radius: 50%;

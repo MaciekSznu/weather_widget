@@ -1,7 +1,13 @@
 <template>
   <div id="app">
     <LegendColumn />
-    <div class="columnsWrapper">
+    <div
+      class="columnsWrapper"
+      @mousedown="slideMouseDown"
+      @mouseleave="slideMouseLeave"
+      @mouseup="slideMouseUp"
+      @mousemove="slideMouseMove"
+    >
       <Column
         v-for="(weather, index) in weatherData"
         :key="index"
@@ -27,28 +33,60 @@
         :isFirst="isFirst(index)"
       />
     </div>
+    <ButtonLeft class="buttonLeft" />
+    <ButtonRight class="buttonRight" />
   </div>
 </template>
 
 <script>
 import Column from "./components/Column";
 import LegendColumn from "./components/LegendColumn";
+import ButtonLeft from "./components/ButtonLeft";
+import ButtonRight from "./components/ButtonRight";
+
 import { weatherData } from "../src/assets/weatherData";
 
 export default {
   name: "App",
   components: {
     Column,
-    LegendColumn
+    LegendColumn,
+    ButtonLeft,
+    ButtonRight
   },
   data() {
     return {
       weatherData,
       showDay: false,
-      columnWidth: 120
+      columnWidth: 120,
+      isDown: false,
+      startX: null,
+      scrollLeft: null,
+      hover: false
     };
   },
   methods: {
+    slideMouseDown(e) {
+      const slider = document.querySelector(".columnsWrapper");
+      this.isDown = true;
+      this.startX = e.pageX - slider.offsetLeft;
+      this.scrollLeft = slider.scrollLeft;
+    },
+    slideMouseLeave() {
+      this.isDown = false;
+      this.hover = false;
+    },
+    slideMouseUp() {
+      this.isDown = false;
+    },
+    slideMouseMove(e) {
+      const slider = document.querySelector(".columnsWrapper");
+      if (!this.isDown) return;
+      e.preventDefault();
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - this.startX) * 1; //multiply can change swipe speed
+      slider.scrollLeft = this.scrollLeft - walk;
+    },
     datas() {
       let datas = this.$data.weatherData;
       return datas;
@@ -182,14 +220,14 @@ export default {
 
       return preasureLineLength;
     }
-  },
-  computed: {}
+  }
 };
 </script>
 
 <style lang="scss">
 #app {
-  font-family: Arial, Helvetica, sans-serif;
+  @import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600&display=swap");
+  font-family: "Fira Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
@@ -199,10 +237,20 @@ export default {
   padding: 0;
   display: flex;
   height: 920px;
+  position: relative;
+
+  .buttonLeft {
+    position: absolute;
+    left: 140px;
+  }
+
+  .buttonRight {
+    position: absolute;
+    left: 1460px;
+  }
 
   .columnsWrapper {
     width: 1440px;
-    //border: 1px solid grey;
     display: flex;
     flex-wrap: nowrap;
     overflow: hidden;
