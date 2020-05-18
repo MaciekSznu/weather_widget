@@ -1,7 +1,9 @@
 <template>
   <div class="button-column">
     <div class="button-column__button">
-      <div class="button-column__button--icon"></div>
+      <div
+        class="button-column__button--icon"
+      ></div>
     </div>
   </div>
 </template>

@@ -124,7 +124,6 @@ export default {
   font-size: 20px;
   font-weight: 400;
   background-color: #ffffff;
-  //border-right: 1px solid #e5e5e5;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -200,7 +199,7 @@ export default {
       height: 2px;
       left: 50%;
       background-color: #ffd520;
-      margin-bottom: 7px;
+      margin-bottom: 8px;
       transform-origin: center left;
     }
     &--first-line {
@@ -279,7 +278,7 @@ export default {
       height: 2px;
       left: 50%;
       background-color: #000000;
-      margin-bottom: 7px;
+      margin-bottom: 8px;
       transform-origin: center left;
     }
     &--first-line {

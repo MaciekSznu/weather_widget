@@ -31,6 +31,7 @@
         :tempLineRotate="tempLineRotate(index)"
         :tempLineLength="tempLineLength(index)"
         :isFirst="isFirst(index)"
+        :class="{ grabbing: isDown }"
       />
     </div>
     <ButtonLeft class="buttonLeft" />
@@ -61,8 +62,7 @@ export default {
       columnWidth: 120,
       isDown: false,
       startX: null,
-      scrollLeft: null,
-      hover: false
+      scrollLeft: null
     };
   },
   methods: {
@@ -74,7 +74,6 @@ export default {
     },
     slideMouseLeave() {
       this.isDown = false;
-      this.hover = false;
     },
     slideMouseUp() {
       this.isDown = false;
@@ -84,8 +83,8 @@ export default {
       if (!this.isDown) return;
       e.preventDefault();
       const x = e.pageX - slider.offsetLeft;
-      const walk = (x - this.startX) * 1; //multiply can change swipe speed
-      slider.scrollLeft = this.scrollLeft - walk;
+      const move = (x - this.startX) * 1; //multiply can change swipe speed
+      slider.scrollLeft = this.scrollLeft - move;
     },
     datas() {
       let datas = this.$data.weatherData;
@@ -113,23 +112,23 @@ export default {
     tempCircleBottom(index) {
       // dodać warunek tak aby nie wychodziło poza kontener
       let tempCircleBottom =
-        parseFloat(this.datas()[index].temperature) * 10 - 24;
+        parseFloat(this.datas()[index].temperature) * 10 - 26;
       return tempCircleBottom;
     },
     tempDescriptionBottom(index) {
       let tempDescriptionBottom =
-        parseFloat(this.datas()[index].temperature) * 10 - 6;
+        parseFloat(this.datas()[index].temperature) * 10 - 8;
       return tempDescriptionBottom;
     },
     preasureCircleBottom(index) {
       // dodać warunek tak aby nie wychodziło poza kontener
       let tempCircleBottom =
-        (parseFloat(this.datas()[index].preasure) - 1000) * 10 - 80;
+        (parseFloat(this.datas()[index].preasure) - 1000) * 10 - 76;
       return tempCircleBottom;
     },
     preasureDescriptionBottom(index) {
       let preasureDescriptionBottom =
-        (parseFloat(this.datas()[index].preasure) - 1000) * 10 - 62;
+        (parseFloat(this.datas()[index].preasure) - 1000) * 10 - 58;
       return preasureDescriptionBottom;
     },
     windDirectionRotate(index) {
@@ -220,7 +219,8 @@ export default {
 
       return preasureLineLength;
     }
-  }
+  },
+  computed: {}
 };
 </script>
 
@@ -242,6 +242,7 @@ export default {
   .buttonLeft {
     position: absolute;
     left: 140px;
+    pointer-events: none;
   }
 
   .buttonRight {
@@ -254,6 +255,10 @@ export default {
     display: flex;
     flex-wrap: nowrap;
     overflow: hidden;
+  }
+
+  .grabbing {
+    cursor: grabbing;
   }
 }
 </style>

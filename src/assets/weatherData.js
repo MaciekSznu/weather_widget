@@ -3,7 +3,7 @@ export const weatherData = [
     day: "Dzisiaj",
     hour: "00:00",
     forecast_icon: require("./cloud.png"),
-    temperature: "7",
+    temperature: "5",
     rain: "0,5",
     wind_direction: "Pd.-Wsch.",
     wind_speed: {
@@ -16,7 +16,7 @@ export const weatherData = [
     day: "Dzisiaj",
     hour: "01:00",
     forecast_icon: require("./cloud.png"),
-    temperature: "7",
+    temperature: "6",
     rain: "",
     wind_direction: "Pd.-Wsch.",
     wind_speed: {
@@ -193,5 +193,213 @@ export const weatherData = [
       number: "17"
     },
     preasure: "1013"
+  },
+  {
+    day: "Dzisiaj",
+    hour: "15:00",
+    forecast_icon: require("./sun_cloud.png"),
+    temperature: "14",
+    rain: "",
+    wind_direction: "Zachodni",
+    wind_speed: {
+      description: "Umiar",
+      number: "17"
+    },
+    preasure: "1015"
+  },
+  {
+    day: "Dzisiaj",
+    hour: "16:00",
+    forecast_icon: require("./sun_cloud.png"),
+    temperature: "16",
+    rain: "",
+    wind_direction: "Zachodni",
+    wind_speed: {
+      description: "Umiar",
+      number: "17"
+    },
+    preasure: "1015"
+  },
+  {
+    day: "Dzisiaj",
+    hour: "17:00",
+    forecast_icon: require("./sun_cloud.png"),
+    temperature: "17",
+    rain: "",
+    wind_direction: "Zachodni",
+    wind_speed: {
+      description: "Umiar",
+      number: "15"
+    },
+    preasure: "1016"
+  },
+  {
+    day: "Dzisiaj",
+    hour: "18:00",
+    forecast_icon: require("./cloud.png"),
+    temperature: "15",
+    rain: "",
+    wind_direction: "Zachodni",
+    wind_speed: {
+      description: "Umiar",
+      number: "14"
+    },
+    preasure: "1013"
+  },
+  {
+    day: "Dzisiaj",
+    hour: "19:00",
+    forecast_icon: require("./cloud.png"),
+    temperature: "13",
+    rain: "",
+    wind_direction: "Zachodni",
+    wind_speed: {
+      description: "Umiar",
+      number: "12"
+    },
+    preasure: "1013"
+  },
+  {
+    day: "Dzisiaj",
+    hour: "20:00",
+    forecast_icon: require("./cloud.png"),
+    temperature: "11",
+    rain: "",
+    wind_direction: "Zachodni",
+    wind_speed: {
+      description: "Umiar",
+      number: "16"
+    },
+    preasure: "1012"
+  },
+  {
+    day: "Dzisiaj",
+    hour: "21:00",
+    forecast_icon: require("./cloud.png"),
+    temperature: "11",
+    rain: "",
+    wind_direction: "Zachodni",
+    wind_speed: {
+      description: "Umiar",
+      number: "10"
+    },
+    preasure: "1010"
+  },
+  {
+    day: "Dzisiaj",
+    hour: "22:00",
+    forecast_icon: require("./cloud.png"),
+    temperature: "9",
+    rain: "",
+    wind_direction: "Zachodni",
+    wind_speed: {
+      description: "Umiar",
+      number: "12"
+    },
+    preasure: "1013"
+  },
+  {
+    day: "Dzisiaj",
+    hour: "23:00",
+    forecast_icon: require("./cloud.png"),
+    temperature: "6",
+    rain: "",
+    wind_direction: "Zachodni",
+    wind_speed: {
+      description: "Umiar",
+      number: "17"
+    },
+    preasure: "1013"
+  },
+  {
+    day: "Jutro",
+    hour: "00:00",
+    forecast_icon: require("./cloud.png"),
+    temperature: "6",
+    rain: "",
+    wind_direction: "Zachodni",
+    wind_speed: {
+      description: "Umiar",
+      number: "17"
+    },
+    preasure: "1010"
+  },
+  {
+    day: "Jutro",
+    hour: "01:00",
+    forecast_icon: require("./cloud.png"),
+    temperature: "7",
+    rain: "",
+    wind_direction: "Zachodni",
+    wind_speed: {
+      description: "Umiar",
+      number: "17"
+    },
+    preasure: "1011"
+  },
+  {
+    day: "Jutro",
+    hour: "02:00",
+    forecast_icon: require("./cloud.png"),
+    temperature: "8",
+    rain: "",
+    wind_direction: "Zachodni",
+    wind_speed: {
+      description: "Umiar",
+      number: "12"
+    },
+    preasure: "1012"
+  },
+  {
+    day: "Jutro",
+    hour: "03:00",
+    forecast_icon: require("./cloud.png"),
+    temperature: "9",
+    rain: "",
+    wind_direction: "Zachodni",
+    wind_speed: {
+      description: "Umiar",
+      number: "15"
+    },
+    preasure: "1010"
+  },
+  {
+    day: "Jutro",
+    hour: "04:00",
+    forecast_icon: require("./cloud.png"),
+    temperature: "10",
+    rain: "",
+    wind_direction: "Zachodni",
+    wind_speed: {
+      description: "Umiar",
+      number: "14"
+    },
+    preasure: "1013"
+  },
+  {
+    day: "Jutro",
+    hour: "05:00",
+    forecast_icon: require("./cloud.png"),
+    temperature: "11",
+    rain: "",
+    wind_direction: "Zachodni",
+    wind_speed: {
+      description: "Umiar",
+      number: "12"
+    },
+    preasure: "1013"
+  },
+  {
+    day: "Jutro",
+    hour: "06:00",
+    forecast_icon: require("./cloud.png"),
+    temperature: "11",
+    rain: "",
+    wind_direction: "Zachodni",
+    wind_speed: {
+      description: "Umiar",
+      number: "17"
+    },
+    preasure: "1014"
   }
 ];
