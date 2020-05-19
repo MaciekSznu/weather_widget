@@ -1,6 +1,6 @@
 <template>
   <div class="panel">
-    <div class="panel__button">
+    <div class="panel__button" @click="slideRight()">
       <div class="panel__button--icon"></div>
     </div>
   </div>
@@ -8,7 +8,12 @@
 
 <script>
 export default {
-  name: "RightPanel"
+  name: "RightPanel",
+  methods: {
+    slideRight() {
+      this.$root.$emit("slide-right");
+    }
+  }
 };
 </script>
 

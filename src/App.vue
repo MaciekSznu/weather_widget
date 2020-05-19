@@ -63,8 +63,34 @@ export default {
       columnWidth: 120,
       isDown: false,
       startX: null,
-      scrollLeft: null
+      scrollLeft: 0
     };
+  },
+  mounted() {
+    this.$root.$on("slide-left", () => {
+      if (this.scrollLeft === this.$refs.slider.scrollLeft) {
+        this.$refs.slider.scrollLeft = this.scrollLeft + this.columnWidth;
+        this.scrollLeft = this.scrollLeft + this.columnWidth;
+      } else {
+        const sliderScrollOffset =
+          this.$refs.slider.scrollLeft % this.columnWidth;
+        this.$refs.slider.scrollLeft =
+          this.$refs.slider.scrollLeft + this.columnWidth - sliderScrollOffset;
+        this.scrollLeft = this.$refs.slider.scrollLeft;
+      }
+    });
+    this.$root.$on("slide-right", () => {
+      if (this.scrollLeft === this.$refs.slider.scrollLeft) {
+        this.$refs.slider.scrollLeft = this.scrollLeft - this.columnWidth;
+        this.scrollLeft = this.scrollLeft - this.columnWidth;
+      } else {
+        const sliderScrollOffset =
+          this.$refs.slider.scrollLeft % this.columnWidth;
+        this.$refs.slider.scrollLeft =
+          this.$refs.slider.scrollLeft - sliderScrollOffset;
+        this.scrollLeft = this.$refs.slider.scrollLeft;
+      }
+    });
   },
   methods: {
     slideMouseDown(e) {
@@ -84,6 +110,7 @@ export default {
       const x = e.pageX - this.$refs.slider.offsetLeft;
       const move = (x - this.startX) * 1; //multiply can change swipe speed
       this.$refs.slider.scrollLeft = this.scrollLeft - move;
+      return this.$refs.slider.scrollLeft;
     },
     datas() {
       let datas = this.$data.weatherData;
