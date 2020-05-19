@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <LegendColumn />
-    <LeftPanel class="leftPanel" @click="moveLeft()" />
+    <LeftPanel class="leftPanel" />
     <div
       class="columnsWrapper"
       @mousedown="slideMouseDown"
@@ -218,8 +218,7 @@ export default {
 
       return preasureLineLength;
     }
-  },
-  computed: {}
+  }
 };
 </script>
 
